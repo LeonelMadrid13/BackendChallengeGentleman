@@ -2,62 +2,64 @@
 
 Bienvenido/a a mi repositorio del challenge **“Cómo diferenciarse”**.
 
-Aquí encontrarás mi viaje de aprendizaje siguiendo el [Backend Developer Roadmap](https://roadmap.sh/backend), donde documento y ejemplifico cada uno de los conceptos fundamentales necesarios para convertirme en un desarrollador backend sólido y actualizado.
+Aquí encontrarás mi viaje de aprendizaje siguiendo el [Backend Developer Roadmap](https://roadmap.sh/backend), donde documento y ejemplifico proyectos prácticos para dominar los conceptos fundamentales y modernos del desarrollo backend.
 
 ---
 
 ## 🌌 ¿De qué trata este challenge?
 
 1. **Elegí la especialidad de Backend Developer.**
-2. **Exploré el roadmap oficial** y, por cada “bubble” (tema clave), creé documentación y ejemplos de código.
-3. **El objetivo:** profundizar en cada concepto, aprender practicando y dejar un registro público y compartible de todo el proceso.
+2. **Exploré el roadmap oficial** y desarrollé proyectos prácticos basados en sus recomendaciones.
+3. **El objetivo:** profundizar en cada tema clave del backend mediante la práctica y dejar un registro público y compartible de todo el proceso.
 
 ---
 
 ## 🌟 ¿Por qué este repositorio?
 
-- Para asentar **las bases necesarias** para desarrollarme como Backend Developer.
-- Para tener un **lugar donde demostrar mis conocimientos** y mi capacidad de aprendizaje autónomo.
-- Para **compartir recursos** con otros desarrolladores y contribuir a la comunidad.
+* Para asentar **las bases necesarias** para desarrollarme como Backend Developer.
+* Para tener un **lugar donde demostrar mis conocimientos** y mi capacidad de aprendizaje autónomo.
+* Para **compartir recursos** con otros desarrolladores y contribuir a la comunidad.
 
 ---
 
-> _“Compartir lo que aprendemos no solo nos ayuda a recordar mejor, sino que puede iluminar el camino de otros. Al final, todos estamos hechos de la misma materia estelar.”_  
+> *“Compartir lo que aprendemos no solo nos ayuda a recordar mejor, sino que puede iluminar el camino de otros. Al final, todos estamos hechos de la misma materia estelar.”*
 > — Inspirado por Carl Sagan
 
 ---
 
-## 🗂️ Estructura del repositorio
+## 🗂️ Proyectos incluidos en el repositorio
 
 ```none
 /
-├── 01_Internet_How_Does_it_Work/
+├── Expense-Tracker/
 │   └── README.md
-├── 02_Learn_a_Language/
-│   ├── Python/
-│   ├── JavaScript/
+├── GitHub-User-Activity/
 │   └── README.md
-├── 03_Version_Control_Systems/
+├── Task-Tracker/
 │   └── README.md
-...
+└── README.md
 ```
 
-- Cada carpeta corresponde a una “bubble” del roadmap de Backend.
-- En cada sección encontrarás:
-  - Conceptos explicados de forma sencilla
-  - Ejemplos de código
-  - Recursos recomendados para profundizar
+* Cada carpeta corresponde a un proyecto práctico inspirado en el roadmap de Backend.
+
+## 🚦 Proyectos prácticos incluidos
+
+* [`Expense-Tracker`](./Expense-Tracker/) — CLI para controlar gastos personales.
+* [`GitHub-User-Activity`](./GitHub-User-Activity/) — Muestra actividad reciente de cualquier usuario de GitHub en terminal.
+* [`Task-Tracker`](./Task-Tracker/) — Lista de tareas/pendientes desde consola.
+
+Cada uno cuenta con su propio README y ejemplos de uso.
 
 ---
 
 ## 🤝 Contribuciones
 
-Si tienes sugerencias o quieres aportar recursos/código adicional, ¡los PRs son bienvenidos!  
+Si tienes sugerencias o quieres aportar recursos/código adicional, ¡los PRs son bienvenidos!
 Este repositorio está pensado para crecer y ser útil para toda la comunidad.
 
 ---
 
-¡Espero que este viaje te sea tan útil como lo está siendo para mí!  
+¡Espero que este viaje te sea tan útil como lo está siendo para mí!
 Siéntete libre de explorar, sugerir o contribuir.
 
 ---
