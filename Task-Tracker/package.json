@@ -1,0 +1,12 @@
+{
+  "name": "task-tracker",
+  "version": "1.0.0",
+  "description": "A simple, file-based **Command Line Task Tracker** — built for learning and productivity.\r Easily manage what you need to do, what you’re working on, and what you’ve finished — all from your terminal!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
