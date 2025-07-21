@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unit Converter – Length</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comic Neue', 'Segoe UI', Arial, sans-serif;
+            margin: 2em;
+            background: #f8f8ff;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            display: flex;
+            gap: 2em;
+        }
+        .card {
+            background: #fff;
+            border: 3px solid #222;
+            border-radius: 12px;
+            padding: 2em;
+            flex: 1;
+            box-shadow: 2px 2px 8px #ddd;
+        }
+        h2 {
+            font-family: 'Comic Neue', 'Segoe UI', Arial, sans-serif;
+            font-size: 2em;
+            margin-top: 0;
+        }
+        nav {
+            margin-bottom: 1em;
+        }
+        nav a {
+            margin-right: 1em;
+            text-decoration: none;
+            font-weight: bold;
+            color: #222;
+            font-family: 'Comic Neue', 'Segoe UI', Arial, sans-serif;
+            font-size: 1.1em;
+        }
+        nav a.selected {
+            color: #246cff;
+            text-decoration: underline;
+        }
+        label, select, input, button {
+            display: block;
+            width: 100%;
+            margin-top: 1em;
+            font-size: 1em;
+            font-family: 'Comic Neue', 'Segoe UI', Arial, sans-serif;
+        }
+        button {
+            margin-top: 1.5em;
+            width: 50%;
+            min-width: 120px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            padding: 0.5em;
+            background: #fff;
+            border: 2px solid #222;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .result-value {
+            font-size: 2em;
+            font-family: 'Comic Neue', 'Segoe UI', Arial, sans-serif;
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Input Card -->
+        <div class="card" id="inputCard">
+            <h2>Unit Converter</h2>
+            <nav>
+                <a href="/length">Length</a>
+                <a href="#" class="selected">Weight</a>
+                <a href="/temperature">Temperature</a>
+            </nav>
+            <form id="WeightConverter">
+                <label>
+                    Enter the weight to convert
+                    <input id="value" name="value" type="number" step="any" min="0" required autocomplete="off">
+                </label>
+                <label>
+                    Unit to Convert from
+                    <select id="fromUnit" name="fromUnit" required>
+                        <option value="milligram">Milligram</option>
+                        <option value="gram">Gram</option>
+                        <option value="kilogram">Kilogram</option>
+                        <option value="pound">Pound</option>
+                        <option value="ounce">Ounce</option>
+                    </select>
+                </label>
+                <label>
+                    Unit to Convert to
+                    <select id="toUnit" name="toUnit" required>
+                        <option value="milligram">Milligram</option>
+                        <option value="gram">Gram</option>
+                        <option value="kilogram">Kilogram</option>
+                        <option value="pound">Pound</option>
+                        <option value="ounce">Ounce</option>
+                    </select>
+                </label>
+                <button type="submit">Convert</button>
+            </form>
+        </div>
+
+        <!-- Result Card -->
+        <div class="card hidden" id="resultCard">
+            <h2>Unit Converter</h2>
+            <nav>
+                <a href="/length">Length</a>
+                <a href="#" class="selected">Weight</a>
+                <a href="/temperature">Temperature</a>
+            </nav>
+            <div style="margin-top:1.2em;">
+                <div>Result of your calculation</div>
+                <div class="result-value" id="resultValue"></div>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('WeightConverter');
+            const inputCard = document.getElementById('inputCard');
+            const resultCard = document.getElementById('resultCard');
+            const resultValue = document.getElementById('resultValue');
+            const resetBtn = document.getElementById('resetBtn');
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const value = parseFloat(document.getElementById('value').value);
+                const fromUnit = document.getElementById('fromUnit').value;
+                const toUnit = document.getElementById('toUnit').value;
+
+                fetch('/convert', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ value, fromUnit, toUnit })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        resultValue.textContent = `${value} ${fromUnit} = ${data.data.value} ${toUnit}`;
+                    } else {
+                        resultValue.textContent = `Error: ${data.message}`;
+                    }
+                    inputCard.classList.add('hidden');
+                    resultCard.classList.remove('hidden');
+                })
+                .catch(error => {
+                    resultValue.textContent = `Error: ${error.message}`;
+                    inputCard.classList.add('hidden');
+                    resultCard.classList.remove('hidden');
+                });
+            });
+
+            resetBtn.addEventListener('click', function() {
+                form.reset();
+                inputCard.classList.remove('hidden');
+                resultCard.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
