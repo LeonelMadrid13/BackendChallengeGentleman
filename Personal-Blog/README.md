@@ -38,7 +38,7 @@ This project is a beginner-friendly, full-stack blog where you can write, edit, 
 
 ## 📁 Project Structure Example
 
-```
+```plaintext
 /
 ├── articles/
 │   ├── 1.md

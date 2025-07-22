@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Blog Admin</title>
+  <style>
+    body { font-family: 'Comic Neue', Arial, sans-serif; background: #fafafa; }
+    .card { border: 2px solid #444; border-radius: 10px; padding: 2em; margin: 2em auto; max-width: 450px;}
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5em;
+    }
+    h2 { margin: 0; }
+    .add-btn a { display: inline-block; background: #444; color: #fff; padding: 0.5em 1em; border-radius: 7px; text-decoration: none; font-weight: bold;}
+    .logout-btn a { display: inline-block; background: #eee; color: #444; border: 1px solid #888; border-radius: 7px; padding: 0.5em 1em; font-weight: bold; text-decoration: none; margin-left: 1em;}
+    ul { list-style: none; padding: 0; margin: 0; }
+    li { display: flex; justify-content: space-between; margin-bottom: 1em;}
+    .date { color: #4a76fd; font-size: .95em;}
+    .actions form { display: inline; }
+    .edit, .delete { background: none; border: none; color: #444; font-weight: bold; cursor: pointer; margin-left: 0.5em;}
+    .delete { color: #d22; }
+    .flex-right { display: flex; align-items: center; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header-row">
+      <h2>Personal Blog</h2>
+      <div class="flex-right">
+        <div class="add-btn"><a href="/admin/new">+ Add</a></div>
+        <% if (typeof session !== "undefined" && session.username) { %>
+          <div class="logout-btn"><a href="/logout">Log Out</a></div>
+        <% } %>
+      </div>
+    </div>
+    <ul>
+      <% articles.forEach(article => { %>
+        <li>
+          <span>
+            <%= article.title %>
+          </span>
+          <span class="actions">
+            <a class="edit" href="/admin/edit/<%= article.slug %>">Edit</a>
+            <form method="POST" action="/admin/delete/<%= article.slug %>" onsubmit="return confirm('Delete this article?');" style="display:inline;">
+              <button class="delete" type="submit">Delete</button>
+            </form>
+          </span>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>

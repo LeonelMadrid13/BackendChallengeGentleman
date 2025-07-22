@@ -1,0 +1,10 @@
+[
+  {
+    "username": "dmaster12435",
+    "passwordHash": "$2b$10$MGocSXUO8qmckBVixUUVkOg2W5M97WUCYSwsqTfLpkShA6/d1G4OK"
+  },
+  {
+    "username": "test1@test.com",
+    "passwordHash": "$2b$10$tscE7.z8Hg3XKFZOgnOTqOadM4E82i3ZhhLpgXhZiXGlPQ3dysaLm"
+  }
+]
