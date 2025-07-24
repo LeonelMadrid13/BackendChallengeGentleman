@@ -1,4 +1,4 @@
-import { getCache, writeCache } from "../utils/util.js";
+import { setCache, getCache } from "../utils/redis.js";
 
 export async function getWeatherData(city) {
     // Simulate fetching weather data
@@ -6,9 +6,8 @@ export async function getWeatherData(city) {
         if (!city) {
             throw new Error('City is required');
         }
-        const cache = await getCache();
-        const cachedData = cache.find(item => item.city.toLowerCase() === city.toLowerCase());
-        if (cachedData && ((Date.now() - cachedData.timestamp) < 30000)) { // 30 seconds cache
+        const cachedData = await getCache(city);
+        if (cachedData) {
             console.log('[WEATHER_CONTROLLER] Returning cached data for:', city);
             return cachedData;
         }
@@ -29,9 +28,8 @@ export async function getWeatherData(city) {
         });
         const extractedData = { address, timezone, description, days: filteredDays, alerts, currentConditions };
         // Update cache
-        cache.push({ city, timestamp: Date.now(), data: extractedData });
         console.log('[WEATHER_CONTROLLER] Fetched new data for:', city);
-        await writeCache(cache);
+        await setCache(city, JSON.stringify(extractedData));
         return extractedData;
     } catch (error) {
         console.error('[WEATHER_CONTROLLER] Error fetching weather data:', error);

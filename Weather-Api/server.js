@@ -1,10 +1,9 @@
+import 'dotenv/config';
 import express from 'express';
-import dotenv from 'dotenv';
 
 import homeRoute from './routes/homeRoute.js';
 import weatherRoute from './routes/weatherRoute.js';
 
-dotenv.config('./.env');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
