@@ -1,4 +1,5 @@
 import express from 'express';
+import logger from 'morgan';
 
 const router = express.Router();
 
@@ -6,9 +7,6 @@ router.get('/', (req, res) => {
     res.send('Welcome to the Weather API');
 });
 
-// handle 404 errors
-router.use((req, res) => {
-    res.status(404).send('Not Found');
-});
+router.use(logger('dev'));
 
 export default router;
