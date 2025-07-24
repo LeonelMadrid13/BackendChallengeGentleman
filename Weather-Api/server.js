@@ -1,12 +1,17 @@
 import express from 'express';
 import logger from 'morgan';
 
+import homeRoute from './routes/homeRoute.js';
+import weatherRoute from './routes/weatherRoute.js';
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(homeRoute);
+app.use('/api', weatherRoute);
 
 app.use(logger('dev'));
 
