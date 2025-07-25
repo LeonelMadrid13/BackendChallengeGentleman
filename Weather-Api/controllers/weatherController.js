@@ -9,23 +9,20 @@ export async function getWeatherData(city) {
         const cachedData = await getCache(city);
         if (cachedData) {
             console.log('[WEATHER_CONTROLLER] Returning cached data for:', city);
-            return cachedData;
+            return JSON.parse(cachedData);
         }
         const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=${process.env.WEATHER_API_KEY}&contentType=json`)
         const weatherData = await response.json();
         // extract only necessary data
         const { address, timezone, description, days, alerts, currentConditions } = weatherData;
-        // remove stations from days array and from days.hours array
-        const filteredDays = days.map(day => {
-            const { stations, ...rest } = day;
+        // remove stations and hours from days array and return only 5 days
+        const filteredDays = days.slice(0, 5).map(day => {
+            const { stations, hours, ...rest } = day;
             return {
                 ...rest,
-                hours: day.hours.map(hour => {
-                    const { stations, ...hourRest } = hour;
-                    return hourRest;
-                })
             };
         });
+        delete currentConditions.stations;
         const extractedData = { address, timezone, description, days: filteredDays, alerts, currentConditions };
         // Update cache
         console.log('[WEATHER_CONTROLLER] Fetched new data for:', city);

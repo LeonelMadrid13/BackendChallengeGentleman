@@ -8,6 +8,7 @@ import weatherRoute from './routes/weatherRoute.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
