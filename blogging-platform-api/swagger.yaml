@@ -1,0 +1,167 @@
+openapi: 3.0.3
+info:
+  title: Blogging Platform API
+  description: RESTful API for a personal blogging platform
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+
+paths:
+  /posts:
+    get:
+      summary: Get all blog posts or filter by term
+      parameters:
+        - in: query
+          name: term
+          schema:
+            type: string
+          description: Filter blog posts by title, content, or category
+      responses:
+        200:
+          description: A list of blog posts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        500:
+          description: Failed to retrieve blog posts
+    post:
+      summary: Create a new blog post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostInput'
+      responses:
+        201:
+          description: Blog post created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        400:
+          description: Validation error
+        500:
+          description: Failed to create blog post
+
+  /posts/{id}:
+    get:
+      summary: Get a single blog post by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Blog post found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        404:
+          description: Blog post not found
+        500:
+          description: Failed to retrieve blog post
+
+    put:
+      summary: Update a blog post by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostInput'
+      responses:
+        200:
+          description: Blog post updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        400:
+          description: Validation error
+        404:
+          description: Blog post not found
+        500:
+          description: Failed to update blog post
+
+    delete:
+      summary: Delete a blog post by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: Blog post deleted successfully
+        404:
+          description: Blog post not found
+        500:
+          description: Failed to delete blog post
+
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '123e4567-e89b-12d3-a456-426614174000'
+        title:
+          type: string
+          example: 'My First Blog Post'
+        content:
+          type: string
+          example: 'This is the content of my blog post.'
+        category:
+          type: string
+          example: 'Technology'
+        tags:
+          type: array
+          items:
+            type: string
+          example: ['Tech', 'Programming']
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    PostInput:
+      type: object
+      required:
+        - title
+        - content
+        - category
+        - tags
+      properties:
+        title:
+          type: string
+          example: 'My First Blog Post'
+        content:
+          type: string
+          example: 'This is the content of my blog post.'
+        category:
+          type: string
+          example: 'Technology'
+        tags:
+          type: array
+          items:
+            type: string
+          example: ['Tech', 'Programming']
