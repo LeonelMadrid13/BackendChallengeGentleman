@@ -53,8 +53,8 @@ Aquí encontrarás mi viaje de aprendizaje siguiendo el [Backend Developer Roadm
 * [`Unit-Converter`](./Unit-Converter/) - Conversor de unidades (longitud, peso, temperatura).
 * [`Personal-Blog`](./Personal-Blog/) - Blog personal con funcionalidades CRUD.
 * [`Weather-Api`](./Weather-Api/) - Aplicación CLI para consultar el clima actual de una ciudad.
-* [`Blogging-Platform-API`](./Blogging-Platform-API/) - API RESTful para una plataforma de blogs.
-* [`Expense-Tracker-API`](./Expense-Tracker-API/) - API RESTful para gestionar gastos personales.
+* [`Blogging-Platform-API`](./blogging-platform-api/) - API RESTful para una plataforma de blogs.
+* [`Expense-Tracker-API`](./expense-tracker-api/) - API RESTful para gestionar gastos personales.
 
 ### Intermediate
 
