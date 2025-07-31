@@ -56,6 +56,10 @@ Aquí encontrarás mi viaje de aprendizaje siguiendo el [Backend Developer Roadm
 * [`Blogging-Platform-API`](./Blogging-Platform-API/) - API RESTful para una plataforma de blogs.
 * [`Expense-Tracker-API`](./Expense-Tracker-API/) - API RESTful para gestionar gastos personales.
 
+### Intermediate
+
+### Advanced
+
 Cada uno cuenta con su propio README y ejemplos de uso.
 
 ---
