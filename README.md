@@ -44,11 +44,17 @@ Aquí encontrarás mi viaje de aprendizaje siguiendo el [Backend Developer Roadm
 
 ## 🚦 Proyectos prácticos incluidos
 
+### Beginner
+
 * [`Expense-Tracker`](./Expense-Tracker/) — CLI para controlar gastos personales.
 * [`GitHub-User-Activity`](./GitHub-User-Activity/) — Muestra actividad reciente de cualquier usuario de GitHub en terminal.
 * [`Task-Tracker`](./Task-Tracker/) — Lista de tareas/pendientes desde consola.
 * [`Number-Guessing-Game`](./Number-Guessing-Game/) - Juego de adivinanza de números con CLI.
 * [`Unit-Converter`](./Unit-Converter/) - Conversor de unidades (longitud, peso, temperatura).
+* [`Personal-Blog`](./Personal-Blog/) - Blog personal con funcionalidades CRUD.
+* [`Weather-Api`](./Weather-Api/) - Aplicación CLI para consultar el clima actual de una ciudad.
+* [`Blogging-Platform-API`](./Blogging-Platform-API/) - API RESTful para una plataforma de blogs.
+* [`Expense-Tracker-API`](./Expense-Tracker-API/) - API RESTful para gestionar gastos personales.
 
 Cada uno cuenta con su propio README y ejemplos de uso.
 
