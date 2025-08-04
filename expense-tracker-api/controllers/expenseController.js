@@ -1,10 +1,11 @@
 import { getPrismaClient } from '../lib/prisma.js';
 import { handleError } from '../lib/handleError.js';
+import { getDateRange } from '../lib/dateRanges.js';
 
 const createExpense = async (req, res) => {
     const prisma = await getPrismaClient();
     try {
-        const { amount, description, category } = req.body;
+        const { amount, description, category, userId } = req.body;
 
         if (!amount || !description || !category) {
             return res.status(400).json({ success: false, error: 'Missing required fields' });
@@ -15,7 +16,10 @@ const createExpense = async (req, res) => {
                 amount,
                 description,
                 category,
-            },
+                user: {
+                    connect: { id: userId }
+                }
+            }
         });
 
         return res.status(201).json({ success: true, data: expense });
@@ -27,7 +31,29 @@ const createExpense = async (req, res) => {
 const getExpenses = async (req, res) => {
     const prisma = await getPrismaClient();
     try {
-        const expenses = await prisma.expense.findMany();
+        let { filter, start, end } = req.query; // filter can be 'week', 'month', etc.
+        let dateRange = {};
+
+        if (filter) {
+            // Get date range based on filter or custom
+            dateRange = filter === 'custom'
+                ? getDateRange(filter, start, end)
+                : getDateRange(filter);
+        } else if (start) {
+            // Only custom range passed, fallback
+            dateRange = {
+                start: new Date(start),
+                end: new Date(end || new Date())
+            };
+            dateRange.end.setDate(dateRange.end.getDate() + 1);
+        }
+
+        const where = dateRange.start && dateRange.end
+            ? { createdAt: { gte: dateRange.start, lt: dateRange.end } }
+            : {};
+
+        const expenses = await prisma.expense.findMany({ where });
+
         return res.status(200).json({ success: true, data: expenses });
     } catch (error) {
         handleError(res, error, 'Get Expenses Error');
@@ -44,7 +70,6 @@ const updateExpense = async (req, res) => {
             where: { id },
             data: { amount, description, category },
         });
-
         return res.status(200).json({ success: true, data: expense });
     } catch (error) {
         handleError(res, error, 'Update Expense Error');

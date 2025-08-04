@@ -7,6 +7,7 @@ import { handleError } from '../lib/handleError.js';
 const key = process.env.JWT_SECRET || 'privatekey';
 
 const loginUser = async (req, res) => {
+    const prisma = await getPrismaClient();
     try {
         const { email, password } = req.body;
 

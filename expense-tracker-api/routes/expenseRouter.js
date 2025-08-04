@@ -11,15 +11,15 @@ const router = express.Router();
 router.use(morgan('dev')); // Log HTTP requests
 
 // Define a route for getting expenses
-router.get('/expenses', getExpenses);
+router.get('/expenses', checkToken, getExpenses);
 
 // Define a route for adding an expense
-router.post('/expenses', createExpense);
+router.post('/expenses', checkToken, createExpense);
 
 // Define a route for updating an expense
-router.put('/expenses/:id', updateExpense);
+router.put('/expenses/:id', checkToken, updateExpense);
 
 // Define a route for deleting an expense
-router.delete('/expenses/:id', deleteExpense);
+router.delete('/expenses/:id', checkToken, deleteExpense);
 
 export default router;
