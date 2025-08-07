@@ -58,6 +58,8 @@ Aquí encontrarás mi viaje de aprendizaje siguiendo el [Backend Developer Roadm
 
 ### Intermediate
 
+* [`Caching-Proxy-CLI`](./caching-proxy-cli/) - Applicación CLI que actúa como proxy de caché para mejorar el rendimiento de solicitudes HTTP.
+
 ### Advanced
 
 Cada uno cuenta con su propio README y ejemplos de uso.
